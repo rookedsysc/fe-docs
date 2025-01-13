@@ -1,0 +1,77 @@
+## React란?
+
+- Meta(Facebook)이 개발한 오픈소스 JavaScript 라이브러리
+- 대규모 웹 서비스의 UI를 더 편하게 개발하기 위해 만들어진 기술
+
+## 특징
+
+- 컴포넌트를 기반으로 UI를 표현(Flutter의 위젯이라 생각하면 편한듯)
+- 화면 업데이트 구현이 쉬움
+  - state 기반으로 화면 렌더링이 쉬움 👇
+  - <img src="/paste-image/react/2025-01-13-13-28-38.png" width="100%" />
+- 화면 업데이트가 빠르게 처리됨
+  - Critical Rendering Path 👇
+  - <img src="/paste-image/react/2025-01-13-13-29-45.png" width="100%" />
+  - Dom이란 Document Object Model로 웹페이지의 구조를 나타내는 객체의 집합을 의미
+    - 요소들의 위치, 배치, 모양에 관한 모든 정보를 담고 있음
+    - <img src="/paste-image/react/2025-01-13-13-31-57.png" width="100%" />
+  - CSSOM : 요소들의 스타일과 관련된 모든 정보
+  - Render Tree : DOM + CSSOM
+  - Layout : 웹 페이지에 렌더트리에 있는 요소들을 배치하는 과정
+  - Painting : 실제로 화면에 그려내는 과정
+  - 화면의 업데이트가 일어나는 시기
+    - JavaScript가 DOM을 수정하면 업데이트가 발생함
+    - <img src="/paste-image/react/2025-01-13-13-35-29.png" width="100%" />
+    - Layout 과정과 Painting 과정은 각각 **Reflow, Repaint**라고 불리며 **굉장히 오래 걸리는 과정**
+      - <img src="/paste-image/react/2025-01-13-13-36-46.png" width="50%" />
+
+## 리액트가 화면 업데이트가 빠른 이유
+
+- 버튼 한 번 클릭시 3000개의 li 태그가 추가되는 코드가 있다고 가정
+- 아래 코드는 버튼을 클릭하면 3000번의 렌더링이 일어남
+  - 즉, 3000번의 Reflow, Repaint가 일어남 👉 엄청난 성능 부하 발생
+
+```js filename="" showLineNumbers copy
+<script>
+  function onClick() {
+    const $ul = document.getElementById("ul");
+    let list = "";
+
+    for(let i = 0; i < 3000; i ++) {
+      $ul.innerHTML += `<li>${i}</li>`;
+    }
+  }
+</script>
+<body>
+  <button onclick="onClick()">클릭</button>
+  <ul id="ul"></ul>
+</body>
+```
+
+- 하지만 위 코드를 아래처럼 바꿀 경우 li 태그를 리스트에 넣어두고 단 한 번만 업데이트를 수행
+
+```js filename="" showLineNumbers copy
+<script>
+  function onClick() {
+    const $ul = document.getElementById("ul");
+    let list = "";
+
+    for(let i = 0; i < 3000; i ++) {
+      list += `<li>${i}</li>`;
+    }
+
+    $ul.innerHTML = list;
+  }
+</script>
+<body>
+  <button onclick="onClick()">클릭</button>
+  <ul id="ul"></ul>
+</body>
+```
+
+- 이런식으로 동시에 발생한 업데이트를 모아서 돔 수정 횟수를 최소화 하는 것을 React가 해줌
+- 이를 Virtual Dom이라고 함
+  - <img src="/paste-image/react/2025-01-13-13-47-58.png" width="100%" />
+  - Virtual Dom은 실제 Dom을 복사한 것으로, 실제 Dom을 수정하는 대신 Virtual Dom을 수정하고 이를 비교하여 실제 Dom을 수정함
+  - <img src="/paste-image/react/2025-01-13-13-48-53.png" width="100%" />
+  - <img src="/paste-image/react/2025-01-13-13-49-17.png" width="100%" />
