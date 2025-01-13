@@ -1,0 +1,23 @@
+## 빌드도구
+
+브라우저는 jsx 파일을 읽을 수 없음 > 그래서 빌드 도구가 필요함
+
+- vite
+
+```bash filename="" copy
+npm create vite@latest
+```
+
+- cra(create react app)
+
+```bash filename="" copy
+npx create-react-app [프로젝트명]
+```
+
+### 빌드도구가 동작하는 원리
+
+cra에만 해당되는 설명인지는 잘 모르겠지만
+
+<img src="/paste-image/react/build/2023-12-26-13-59-56.png" width="100%" />
+
+public/index.html에는 root가 있는데 `src` 폴더에 있는 파일들을 합쳐서 id가 root인 div에 넣어주는 역할을 한다.
