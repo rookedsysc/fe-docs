@@ -1,10 +1,10 @@
 {
-  "index": {
-    "type": "page",
-    "title": "Index"
-  },
   "react": {
     "type": "page",
     "title": "React"
+  },
+  "index": {
+    "type": "page",
+    "title": "Index"
   }
 }
