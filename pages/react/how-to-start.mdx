@@ -1,0 +1,31 @@
+## Vite + React
+
+- vite 프로젝트 생성
+
+```console filename="" copy showLineNumbers
+npm create vite@latest
+```
+
+- 생소한 옵션
+
+```console filename="" copy showLineNumbers
+◆  Select a variant:
+│  ● TypeScript
+│  ○ TypeScript + SWC
+│  ○ JavaScript
+│  ○ JavaScript + SWC
+│  ○ React Router v7 ↗
+```
+
+- SWC 
+  - Rust로 작성된 JavaScrtip/TypeScript 컴파일러 
+  - | 비교 항목 | Babel | SWC |
+    | --- | --- | --- |
+    | 언어 | JavaScript | Rust |
+    | 속도 | 느림 | 빠름 |
+    | 사용 목적 | JS/TS 변환, 플러그인 풍부 | JS/TS 변환, 빌드 속도 최적화 |
+    | Next.js 지원 | 12 이전 기본 | 12 이후 기본 트랜스파일러 |
+  - 사용하기 위해선 `npm install @swc/core` 명령어로 설치해야 함
+- React Router v7 ↗
+  - Next.js의 내장된 라우팅 시스템을 사용하지 않고, React Router v7을 사용하는 설정
+  - Next.js에서는 기본적으로 pages/ 폴더 구조로 라우팅이 되는데, 이 옵션을 선택하면 React Router를 사용해서 라우팅을 직접 설정해야 함
