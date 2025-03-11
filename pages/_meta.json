@@ -1,4 +1,8 @@
 {
+  "theory": {
+    "type": "page",
+    "title": "theory"
+  },
   "react": {
     "type": "page",
     "title": "React"
