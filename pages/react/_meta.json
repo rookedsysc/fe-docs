@@ -1,5 +1,8 @@
 {
   "build": "Build",
   "react": "React란?",
-  "how-to-start": "React 시작하기"
+  "how-to-start": "React 시작하기",
+  "components": "Components",
+  "ui-render": "UI 렌더링",
+  "props": "Props"
 }
