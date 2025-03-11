@@ -1,20 +1,6 @@
 import "./App.css";
+import Header from "./components/Header";
 
-// const Header = () => {
-//   return (
-//     <header>
-//       <h1>Header</h1>
-//     </header>
-//   );
-// };
-
-function Header() {
-  return (
-    <header>
-      <h1>Header</h1>
-    </header>
-  );
-}
 function App() {
   return (
     <>
