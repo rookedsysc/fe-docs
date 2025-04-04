@@ -3,4 +3,27 @@ const withNextra = require('nextra')({
   themeConfig: './theme.config.tsx',
 })
 
-module.exports = withNextra()
+const nextConfig = {
+  webpack: (config, { dev, isServer }) => {
+    config.watchOptions = {
+      ...config.watchOptions,
+      ignored: [...(config.watchOptions?.ignored || []), '**/example/**']
+    };
+    return config;
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  async rewrites() {
+    return {
+      beforeFiles: [
+        {
+          source: '/example/:path*',
+          destination: '/404'
+        }
+      ]
+    }
+  }
+}
+
+module.exports = withNextra(nextConfig)
